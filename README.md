@@ -32,3 +32,36 @@
 * Buat Aplikasi Web Java (minimal 3 tabel database berelasi)
 * Deploy ke cloud provider (Heroku atau Openshift)
 * Buat aplikasi clientnya dengan Android (boleh menggunakan aplikasi dari perkuliahan sebelumnya)
+
+## Materi Kuliah ##
+
+### Sebelum UTS ###
+
+* Arsitektur Aplikasi Web Saat Ini
+* Protocol Populer di Internet
+
+   * Domain Name System
+   * HTTP
+   * SMTP
+   * IMAP/POP
+
+* Web Services
+
+  * SOAP
+  * REST
+
+### Setelah UTS ###
+
+* Cloud Services
+
+  * IaaS, PaaS, SaaS
+  * Virtualization, Containerization
+
+* Single Page Application
+* Web Application Security
+
+   * XSS
+   * CSRF
+   * OAuth
+
+* Integrasi Mobile Apps dan Web Apps
