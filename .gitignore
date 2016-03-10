@@ -1,0 +1,8 @@
+# Ignore Mac Files
+.DS_Store
+
+# Ignore Maven Files
+target
+
+# Ignore Vim Files
+*.swp
