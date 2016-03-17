@@ -35,6 +35,11 @@ public class DataUserServlet extends HttpServlet {
 
 		String contentType = req.getHeader("Accept");
 
+		if(contentType == null){
+			res.sendError(406, "Content Type "+contentType+" tidak tersedia");
+			return;
+		}
+
 		if("text/csv".equalsIgnoreCase(contentType)){
 			res.setContentType(contentType);
 			PrintWriter output = res.getWriter();
@@ -49,19 +54,24 @@ public class DataUserServlet extends HttpServlet {
 			return;
 		}
 
-		res.setContentType("text/html");
-		PrintWriter output = res.getWriter();
-		output.println("<html>");
-		output.println("<head>");
-		output.println("<title>Data User</title>");
-		output.println("</head>");
-		output.println("<body>");
-		output.println("<h1>Data User</h1>");
+		if(contentType.contains("text/html")){
+			res.setContentType("text/html");
+			PrintWriter output = res.getWriter();
+			output.println("<html>");
+			output.println("<head>");
+			output.println("<title>Data User</title>");
+			output.println("</head>");
+			output.println("<body>");
+			output.println("<h1>Data User</h1>");
 
-		output.println(konversiJadiHtml());
+			output.println(konversiJadiHtml());
 
-		output.println("</body>");
-		output.println("</html>");
+			output.println("</body>");
+			output.println("</html>");
+			return;
+		}
+
+		res.sendError(406, "Content Type "+contentType+" tidak tersedia");
 	}
 
 	private String konversiJadiHtml(){
