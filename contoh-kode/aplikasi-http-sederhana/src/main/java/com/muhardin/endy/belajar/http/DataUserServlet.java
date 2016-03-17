@@ -11,10 +11,14 @@ import java.io.IOException;
 
 import java.util.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 @WebServlet(urlPatterns = "/data", loadOnStartup = 1)
 public class DataUserServlet extends HttpServlet {
 
 	private List<Map<String, String>> dataUser = new ArrayList<>();
+	private ObjectMapper jsonMapper = new ObjectMapper();
 
 	public DataUserServlet(){
 		for(int i=1; i<11; i++){
@@ -35,6 +39,13 @@ public class DataUserServlet extends HttpServlet {
 			res.setContentType(contentType);
 			PrintWriter output = res.getWriter();
 			output.println(konversiJadiCsv());
+			return;
+		}
+
+		if("application/json".equalsIgnoreCase(contentType)){
+			res.setContentType(contentType);
+			PrintWriter output = res.getWriter();
+			output.println(konversiJadiJson());
 			return;
 		}
 
@@ -80,5 +91,16 @@ public class DataUserServlet extends HttpServlet {
 		}
 
 		return hasil.toString();
+	}
+
+	private String konversiJadiJson(){
+		try{
+			return jsonMapper.writer()
+			.with(SerializationFeature.INDENT_OUTPUT)
+			.writeValueAsString(dataUser);
+		} catch (Exception err){
+			err.printStackTrace();
+			return "{data: \"Error\"}";
+		} 
 	}
 }
