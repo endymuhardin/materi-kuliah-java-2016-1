@@ -17,6 +17,11 @@ public class HaloServlet extends HttpServlet{
 		String nama = req.getParameter("n");
 		String email = req.getParameter("email");
 
+		if(nama == null || email == null){
+			res.sendError(400, "Nama dan Email harus diisi");
+			return;
+		}
+
 		if(!"endy".equals(nama)){
 			res.sendError(404, "Nama "+nama+" tidak ditemukan");
 			return;
