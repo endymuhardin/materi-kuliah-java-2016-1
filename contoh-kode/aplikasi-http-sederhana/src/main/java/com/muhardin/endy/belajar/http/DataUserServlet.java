@@ -27,6 +27,17 @@ public class DataUserServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws IOException {
+
+
+		String contentType = req.getHeader("Accept");
+
+		if("text/csv".equalsIgnoreCase(contentType)){
+			res.setContentType(contentType);
+			PrintWriter output = res.getWriter();
+			output.println(konversiJadiCsv());
+			return;
+		}
+
 		res.setContentType("text/html");
 		PrintWriter output = res.getWriter();
 		output.println("<html>");
@@ -56,6 +67,17 @@ public class DataUserServlet extends HttpServlet {
 		}
 
 		hasil.append("</table>\n");
+
+		return hasil.toString();
+	}
+
+	private String konversiJadiCsv(){
+		StringBuilder hasil = new StringBuilder();
+
+		hasil.append("username,email\n");
+		for(Map<String, String> u : dataUser){
+			hasil.append(u.get("username")+","+u.get("email")+"\n");
+		}
 
 		return hasil.toString();
 	}
