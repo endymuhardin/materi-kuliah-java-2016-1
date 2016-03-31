@@ -23,6 +23,8 @@ public class ScopeDemoServlet extends HttpServlet {
 			getServletContext().setAttribute("nama", nama);
 		}
 
+		String aplikasi = (String) getServletContext().getAttribute("aplikasi");
+
 		// scope session
 		if(email == null){
 			// session timeout 2 menit
@@ -39,7 +41,7 @@ public class ScopeDemoServlet extends HttpServlet {
 		output.println("<title>Session Demo</title>");
 		output.println("</head>");
 		output.println("<body>");
-		output.println("<h1>Halaman 2</h1>");
+		output.println("<h1>Nama Aplikasi : "+aplikasi+"</h1>");
 		output.println("<h2>Halo "+nama+"</h2>");
 		output.println("<h2>Email :  "+email+"</h2>");
 		output.println("<h2>HP :  "+hp+"</h2>");
