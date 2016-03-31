@@ -14,12 +14,21 @@ public class ScopeDemoServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String nama = req.getParameter("nama");
 		String email = req.getParameter("email");
+		String hp = req.getParameter("hp");
 
+		// scope aplikasi/context
 		if(nama == null){
-			nama = (String) req.getSession().getAttribute("nama");
+			nama = (String) getServletContext().getAttribute("nama");
 		} else {
-			req.getSession().setAttribute("nama", nama);
+			getServletContext().setAttribute("nama", nama);
 		}
+
+		// scope session
+		if(email == null){
+			email = (String) req.getSession().getAttribute("email");
+		} else {
+			req.getSession().setAttribute("email", email);
+		}		
 
 		res.setContentType("text/html");
 		PrintWriter output = res.getWriter();
@@ -31,6 +40,7 @@ public class ScopeDemoServlet extends HttpServlet {
 		output.println("<h1>Halaman 2</h1>");
 		output.println("<h2>Halo "+nama+"</h2>");
 		output.println("<h2>Email :  "+email+"</h2>");
+		output.println("<h2>HP :  "+hp+"</h2>");
 		
 		output.println("<a href=\"/scopedemo\">Reload halaman ini</a>");
 
