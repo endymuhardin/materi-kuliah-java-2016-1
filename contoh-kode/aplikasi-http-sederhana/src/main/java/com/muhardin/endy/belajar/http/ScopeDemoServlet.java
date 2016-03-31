@@ -25,6 +25,8 @@ public class ScopeDemoServlet extends HttpServlet {
 
 		// scope session
 		if(email == null){
+			// session timeout 2 menit
+			req.getSession().setMaxInactiveInterval(1*60);
 			email = (String) req.getSession().getAttribute("email");
 		} else {
 			req.getSession().setAttribute("email", email);
