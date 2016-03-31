@@ -33,3 +33,5 @@ Scope variabel dalam aplikasi web
 
 	* Uptime aplikasi
 	* Data yang dishare semua user. Contoh: logo, versi aplikasi, visitor, jumlah klik
+	* Konfigurasi aplikasi
+	* Objek yang digunakan dalam aplikasi. Contoh : koneksi database, koneksi socket ke aplikasi lain, koneksi ke mail server, dsb.
