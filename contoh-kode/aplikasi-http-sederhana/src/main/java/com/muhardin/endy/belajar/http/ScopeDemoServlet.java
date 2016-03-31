@@ -9,11 +9,17 @@ import javax.servlet.annotation.WebServlet;
 import java.io.PrintWriter;
 import java.io.IOException;
 
-@WebServlet("/sessiondemo")
-public class SessionDemoServlet extends HttpServlet {
+@WebServlet("/scopedemo")
+public class ScopeDemoServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String nama = req.getParameter("nama");
 		String email = req.getParameter("email");
+
+		if(nama == null){
+			nama = (String) req.getSession().getAttribute("nama");
+		} else {
+			req.getSession().setAttribute("nama", nama);
+		}
 
 		res.setContentType("text/html");
 		PrintWriter output = res.getWriter();
@@ -26,7 +32,7 @@ public class SessionDemoServlet extends HttpServlet {
 		output.println("<h2>Halo "+nama+"</h2>");
 		output.println("<h2>Email :  "+email+"</h2>");
 		
-		output.println("<a href=\"/sessiondemo\">Reload halaman ini</a>");
+		output.println("<a href=\"/scopedemo\">Reload halaman ini</a>");
 
 		output.println("</body>");
 		output.println("</html>");
